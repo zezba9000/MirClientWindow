@@ -1,0 +1,11 @@
+<< Mir Simulation enviroment for X11 >>
+miral-app
+
+<< Before you can run Mir app run this >>
+export MIR_SOCKET=/var/run/mir_socket
+
+<< In UBPorts/Unity8/Mir Terminal to install using apt >>>
+sudo mount -o remount,rw /
+
+<< armhf cross compile >>
+arm-linux-gnueabihf-gcc
