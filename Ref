@@ -7,5 +7,8 @@ export MIR_SOCKET=/var/run/mir_socket
 << In UBPorts/Unity8/Mir Terminal to install using apt >>>
 sudo mount -o remount,rw /
 
+<< Compile c app >>
+gcc main.c -I/usr/include/mirclient -I/usr/include/mircommon -I/usr/include/mircookie -I/usr/include/mircore -lmircore -lmirclient -lmircommon -lmircookie
+
 << armhf cross compile >>
 arm-linux-gnueabihf-gcc
