@@ -72,4 +72,10 @@
   <ItemGroup>
     <None Include="main.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="GLES2_Mir.desktop">
+      <DeployService-TargetDirectoryId>Linux.DesktopApplications</DeployService-TargetDirectoryId>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 </Project>

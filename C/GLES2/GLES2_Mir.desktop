@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Name=GLES2_Mir
+Exec=/home/awitte/Dev/MirClientWindow/C/GLES2/bin/Debug/GLES2
+Type=Application
+Icon=firefox
+Categories=WebBrowser;
+StartupNotify=true
+Path=/home/awitte/Dev/MirClientWindow/C/GLES2/bin/Debug

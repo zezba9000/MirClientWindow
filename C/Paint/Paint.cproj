@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\Debug</OutputPath>
     <Externalconsole>true</Externalconsole>
-    <OutputName>TestMirC</OutputName>
+    <OutputName>Paint</OutputName>
     <CompileTarget>Bin</CompileTarget>
     <DefineSymbols>DEBUG MONODEVELOP</DefineSymbols>
     <SourceDirectory>.</SourceDirectory>
@@ -64,5 +64,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="main.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Paint_Mir.desktop">
+      <DeployService-TargetDirectoryId>Linux.DesktopApplications</DeployService-TargetDirectoryId>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 </Project>
