@@ -1,6 +1,6 @@
 [Desktop Entry]
 Version=1.0
-Name=Paint_Mir
+Name=Paint
 Exec=/home/awitte/Dev/MirClientWindow/C/Paint/bin/Debug/Paint
 Type=Application
 Icon=firefox

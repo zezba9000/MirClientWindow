@@ -66,7 +66,7 @@
     <Compile Include="main.c" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Paint_Mir.desktop">
+    <Content Include="Paint.desktop">
       <DeployService-TargetDirectoryId>Linux.DesktopApplications</DeployService-TargetDirectoryId>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

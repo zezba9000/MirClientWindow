@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=Basic
+Exec=/home/awitte/Dev/MirClientWindow/C/Basic/bin/Debug/Basic
+Type=Application
+Icon=firefox
+Categories=WebBrowser;
+StartupNotify=true
+Path=/home/awitte/Dev/MirClientWindow/C/Basic/bin/Debug
+Name[en_US]=Basic

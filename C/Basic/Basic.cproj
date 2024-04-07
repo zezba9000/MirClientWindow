@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{8B70AA2D-B715-48E9-816E-30346408051D}</ProjectGuid>
+    <ProjectGuid>{D2973E4E-05B8-4A50-A610-35034E219F7E}</ProjectGuid>
     <Compiler>
       <Compiler ctype="GccCompiler" />
     </Compiler>
@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\Debug</OutputPath>
     <Externalconsole>true</Externalconsole>
-    <OutputName>GLES2</OutputName>
+    <OutputName>Basic</OutputName>
     <CompileTarget>Bin</CompileTarget>
     <DefineSymbols>DEBUG MONODEVELOP</DefineSymbols>
     <SourceDirectory>.</SourceDirectory>
@@ -34,15 +34,13 @@
         <Lib>mirclient</Lib>
         <Lib>mircommon</Lib>
         <Lib>mircookie</Lib>
-        <Lib>GLESv2</Lib>
-        <Lib>EGL</Lib>
       </Libs>
     </Libs>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release</OutputPath>
     <Externalconsole>true</Externalconsole>
-    <OutputName>GLES2</OutputName>
+    <OutputName>Basic</OutputName>
     <CompileTarget>Bin</CompileTarget>
     <OptimizationLevel>3</OptimizationLevel>
     <DefineSymbols>MONODEVELOP</DefineSymbols>
@@ -61,20 +59,14 @@
         <Lib>mirclient</Lib>
         <Lib>mircommon</Lib>
         <Lib>mircookie</Lib>
-        <Lib>GLESv2</Lib>
-        <Lib>EGL</Lib>
       </Libs>
     </Libs>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="eglapp.c" />
     <Compile Include="main.c" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="eglapp.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="GLES2.desktop">
+    <Content Include="Basic.desktop">
       <DeployService-TargetDirectoryId>Linux.DesktopApplications</DeployService-TargetDirectoryId>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

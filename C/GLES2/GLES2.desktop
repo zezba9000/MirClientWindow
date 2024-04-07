@@ -1,6 +1,6 @@
 [Desktop Entry]
 Version=1.0
-Name=GLES2_Mir
+Name=GLES2
 Exec=/home/awitte/Dev/MirClientWindow/C/GLES2/bin/Debug/GLES2
 Type=Application
 Icon=firefox

@@ -7,7 +7,8 @@ sudo apt install miral-examples
 miral-app
 
 << To launch standalone mir app >>
-Create a <app>.desktop files and place it in /usr/share/applications folder
+Create a <app>.desktop files and place it in "/usr/share/applications" folder
+Or use "~/.local/share/applications" folder
 
 << Check if desktop session >>
 echo $XDG_SESSION_TYPE
@@ -19,7 +20,8 @@ echo $MIR_SOCKET
 sudo mount -o remount,rw /
 
 << Compile c app >>
-gcc main.c -I/usr/include/mirclient -I/usr/include/mircommon -I/usr/include/mircookie -I/usr/include/mircore -lmircore -lmirclient -lmircommon -lmircookie
+gcc main.c -I/usr/include/mirclient -I/usr/include/mircommon -I/usr/include/mircookie -I/usr/include/mircore -lmircore -lmirclient -lmircommon -lmircookie -lEGL -lGLESv2
 
 << armhf cross compile >>
-arm-linux-gnueabihf-gcc
+ARM32: arm-linux-gnueabihf-gcc
+ARM64: aarch64-linux-gnu-gcc
