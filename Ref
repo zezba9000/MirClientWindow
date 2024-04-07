@@ -1,8 +1,19 @@
+<< SDK >>
+sudo apt install libmirclient-dev
+sudo apt install libgles2-mesa-dev
+
 << Mir Simulation enviroment for X11 >>
+sudo apt install miral-examples
 miral-app
 
-<< Before you can run Mir app run this >>
-export MIR_SOCKET=/var/run/mir_socket
+<< To launch standalone mir app >>
+Create a <app>.desktop files and place it in /usr/share/applications folder
+
+<< Check if desktop session >>
+echo $XDG_SESSION_TYPE
+
+<< Check Mir server path >>
+echo $MIR_SOCKET
 
 << In UBPorts/Unity8/Mir Terminal to install using apt >>>
 sudo mount -o remount,rw /

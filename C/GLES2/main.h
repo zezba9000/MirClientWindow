@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright © 2013 Canonical Ltd.
  *
  * This program is free software: you can redistribute it and/or modify
@@ -54,3 +54,4 @@ MirWindow*     mir_eglapp_native_window();
 #endif
 
 #endif
+

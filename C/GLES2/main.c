@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright © 2013 Canonical Ltd.
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,7 +16,7 @@
  * Author: Daniel van Vugt <daniel.van.vugt@canonical.com>
  */
 
-#include "eglapp.h"
+#include "main.h"
 #include "mir_toolkit/mir_client_library.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -530,4 +530,12 @@ struct MirConnection* mir_eglapp_native_connection()
 MirWindow* mir_eglapp_native_window()
 {
     return window;
+}
+
+int main(int argc, char *argv[])
+{
+	unsigned int width, height;
+	struct mir_eglapp_arg customArgs = {};
+	mir_eglapp_init(argc, argv, &width, &height, &customArgs);
+	return 0;
 }
