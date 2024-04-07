@@ -25,3 +25,10 @@ gcc main.c -I/usr/include/mirclient -I/usr/include/mircommon -I/usr/include/mirc
 << armhf cross compile >>
 ARM32: arm-linux-gnueabihf-gcc
 ARM64: aarch64-linux-gnu-gcc
+
+<< MonoDev xbuild .sln files >>
+xbuild
+xbuild \p:Configuration=Debug
+
+NOTE you may have to add this line under a projects "<Project>" element...
+"<Target Name="Build" DependsOnTargets="$(BuildDependsOn)" Outputs="$(TargetPath)"/>"
