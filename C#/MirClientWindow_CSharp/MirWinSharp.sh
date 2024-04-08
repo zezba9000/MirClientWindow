@@ -1,0 +1,1 @@
+mono ./MirWinSharp.exe

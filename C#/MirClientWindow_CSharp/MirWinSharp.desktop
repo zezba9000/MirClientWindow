@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=MirWinSharp
+Exec=/home/awitte/Dev/MirClientWindow/C#/MirClientWindow_CSharp/bin/Debug/MirWinSharp.sh
+Type=Application
+Icon=firefox
+Categories=WebBrowser;
+StartupNotify=true
+Path=/home/awitte/Dev/MirClientWindow/C#/MirClientWindow_CSharp/bin/Debug
+Name[en_US]=MirWinSharp
