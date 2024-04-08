@@ -1,8 +1,28 @@
 ﻿#include <stdio.h>
 #include "mir_toolkit/mir_client_library.h"
 
-#define BYTES_PER_PIXEL(f) ((f) == mir_pixel_format_bgr_888 ? 3 : 4)
 int running = 1;
+
+int BYTES_PER_PIXEL(enum MirPixelFormat format)
+{
+	switch (format)
+	{
+		case mir_pixel_format_abgr_8888:
+		case mir_pixel_format_xbgr_8888:
+		case mir_pixel_format_argb_8888:
+		case mir_pixel_format_xrgb_8888:
+			return 4;
+
+		case mir_pixel_format_bgr_888:
+		case mir_pixel_format_rgb_888:
+			return 3;
+
+		case mir_pixel_format_rgb_565:
+		case mir_pixel_format_rgba_5551:
+		case mir_pixel_format_rgba_4444:
+			return 2;
+	}
+}
 
 static MirOutput const* find_active_output(MirDisplayConfig const* conf)
 {
@@ -54,19 +74,35 @@ int main (int argc, char *argv[])
         return 1;
     }
 
-    // validate RGBA8 format
+    // validate RGBA8 format exists
     MirPixelFormat pixel_format = mir_pixel_format_invalid;
     size_t num_pfs = mir_output_get_num_pixel_formats(output);
 
+    int hasFormat_abgr = 0;
+    int hasFormat_xbgr = 0;
+    int hasFormat_argb = 0;
+    int hasFormat_xrgb = 0;
     for (size_t i = 0; i < num_pfs; i++)
     {
         MirPixelFormat f = mir_output_get_pixel_format(output, i);
         if (BYTES_PER_PIXEL(f) == 4)
         {
-            pixel_format = f;
-            break;
+            //pixel_format = f;
+            //break;
+            switch (f)
+            {
+            	case mir_pixel_format_abgr_8888: hasFormat_abgr = 1; break;
+            	case mir_pixel_format_xbgr_8888: hasFormat_xbgr = 1; break;
+            	case mir_pixel_format_argb_8888: hasFormat_argb = 1; break;
+            	case mir_pixel_format_xrgb_8888: hasFormat_xrgb = 1; break;
+            }
         }
     }
+
+    if (hasFormat_abgr) pixel_format = mir_pixel_format_abgr_8888;
+    else if (hasFormat_xbgr) pixel_format = mir_pixel_format_xbgr_8888;
+    else if (hasFormat_argb) pixel_format = mir_pixel_format_argb_8888;
+    else if (hasFormat_xrgb) pixel_format = mir_pixel_format_xrgb_8888;
 
     if (pixel_format == mir_pixel_format_invalid)
     {
@@ -113,8 +149,8 @@ int main (int argc, char *argv[])
         {
         	data[i + 0] = 0;
         	data[i + 1] = 0;
-        	data[i + 2] = 255;
-        	data[i + 3] = 255;
+        	data[i + 2] = 255;// R or B
+        	data[i + 3] = 255;// alpha
         }
 
         // swap buffer
