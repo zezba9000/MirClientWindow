@@ -170,7 +170,7 @@ namespace TestMirCSharp
 		[DllImport(clientLib, EntryPoint = "mir_event_get_type", ExactSpelling = true)]
 		public static extern MirEventType mir_event_get_type(MirEvent e);
 
-		static bool running;
+		static bool running = true;
 		static int swap_interval;
 
 		static int BYTES_PER_PIXEL(MirPixelFormat format)
@@ -218,10 +218,13 @@ namespace TestMirCSharp
 			if (event_type == MirEventType.mir_event_type_close_window) running = false;
 		}
 
-	public static int Main(string[] args)
+		public static int Main(string[] args)
 		{
 			// get connection
-			var conn = mir_connect_sync(null, null);
+			Console.WriteLine ("Calling: mir_connect_sync");
+			byte[] appName = Encoding.UTF8.GetBytes("MirWinSharp");
+			MirConnection conn;
+			fixed (byte* appNamePtr = appName) conn = mir_connect_sync(null, appNamePtr);
 			if (mir_connection_is_valid(conn) == 0)
 			{
 				byte* ePtr = mir_connection_get_error_message(conn);
@@ -231,9 +234,11 @@ namespace TestMirCSharp
 			}
 
 			// get display config
+			Console.WriteLine ("Calling: mir_connection_create_display_configuration");
 			MirDisplayConfig display_config = mir_connection_create_display_configuration(conn);
 
 			// get display output
+			Console.WriteLine ("Calling: find_active_output");
 			MirOutput output = find_active_output(display_config);
 			if (output == MirOutput.Zero)
 			{
@@ -243,6 +248,7 @@ namespace TestMirCSharp
 			}
 
 			// validate RGBA8 format exists
+			Console.WriteLine ("Calling: mir_output_get_num_pixel_formats");
 			MirPixelFormat pixel_format = MirPixelFormat.mir_pixel_format_invalid;
 			int num_pfs = mir_output_get_num_pixel_formats(output);
 
@@ -252,6 +258,7 @@ namespace TestMirCSharp
 			bool hasFormat_xrgb = false;
 			for (int i = 0; i < num_pfs; i++)
 			{
+				Console.WriteLine ("Calling: mir_output_get_pixel_format: " + i);
 				MirPixelFormat f = mir_output_get_pixel_format(output, (size_t)i);
 				if (BYTES_PER_PIXEL(f) == 4)
 				{
@@ -295,18 +302,21 @@ namespace TestMirCSharp
 			}
 
 			// get display size
+			Console.WriteLine ("Calling: mir_output_get_current_mode");
 			MirOutputMode mode = mir_output_get_current_mode(output);
 			int width = mir_output_mode_get_width(mode);
 			int height = mir_output_mode_get_height(mode);
 			mir_display_config_release(display_config);
 
 			// create window
+			Console.WriteLine ("Calling: mir_create_normal_window_spec");
 			MirWindowSpec spec = mir_create_normal_window_spec(conn, width, height);
 			mir_window_spec_set_pixel_format(spec, pixel_format);
 			byte[] windowName = Encoding.UTF8.GetBytes("Mir C#");
 			fixed (byte* windowNamePtr = windowName) mir_window_spec_set_name(spec, windowNamePtr);
 			mir_window_spec_set_buffer_usage(spec, MirBufferUsage.mir_buffer_usage_software);
 
+			Console.WriteLine ("Calling: mir_create_window_sync");
 			MirWindow window = mir_create_window_sync(spec);
 			mir_window_spec_release(spec);
 			if (window == MirWindow.Zero)
@@ -316,18 +326,22 @@ namespace TestMirCSharp
 			}
 
 			// run
+			Console.WriteLine ("Calling: mir_window_get_buffer_stream");
 			MirBufferStream bs = mir_window_get_buffer_stream(window);
 			mir_buffer_stream_set_swapinterval(bs, swap_interval);
 			var on_event_callback = new MirWindowEventCallbackMethod(on_event);// we keep this in memory verbose like this so GC doesn't delete it
 			var on_event_callback_ptr = Marshal.GetFunctionPointerForDelegate(on_event_callback);
+			Console.WriteLine ("Calling: mir_window_set_event_handler");
 			mir_window_set_event_handler(window, on_event_callback_ptr, null);
 			while (running)
 			{
 				// get buffer
+				//Console.WriteLine ("Calling: mir_buffer_stream_get_graphics_region");
 				MirGraphicsRegion backbuffer;
 				mir_buffer_stream_get_graphics_region(bs, &backbuffer);
 
 				// clear buffer
+				//Console.WriteLine ("Writing buffer...");
 				byte* data = backbuffer.vaddr;
 				int size = backbuffer.width * backbuffer.height * 4;
 				byte channel0 = (byte)(isABGR ? 255 : 0);
@@ -341,10 +355,12 @@ namespace TestMirCSharp
 				}
 
 				// swap buffer
+				//Console.WriteLine ("Calling: mir_buffer_stream_swap_buffers_sync");
 				mir_buffer_stream_swap_buffers_sync(bs);
 			}
 
 			// shutdown
+			Console.WriteLine ("Calling: Shutdown...");
 			mir_window_set_event_handler(window, MirWindowEventCallback.Zero, null);
 			mir_window_release_sync(window);
 			mir_connection_release(conn);

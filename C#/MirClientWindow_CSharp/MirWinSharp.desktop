@@ -1,7 +1,7 @@
 [Desktop Entry]
 Version=1.0
 Name=MirWinSharp
-Exec=/home/awitte/Dev/MirClientWindow/C#/MirClientWindow_CSharp/bin/Debug/MirWinSharp.sh
+Exec=mono /home/awitte/Dev/MirClientWindow/C#/MirClientWindow_CSharp/bin/Debug/MirWinSharp.exe
 Type=Application
 Icon=firefox
 Categories=WebBrowser;
