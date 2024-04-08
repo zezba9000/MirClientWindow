@@ -1,5 +1,6 @@
 # Create native Mir Window Example
 * Writen in C or C#
+* NOTE: C# proj for legacy MonoDevelop ```.NETFW 4``` and one for targeting ```.NET 8```
 * Backed up Paint and GLES2 demos
 * Tested with Ubuntu 17.04 / Unity8 on ```Intel Celeron N3350``` and Unity 16.04 UBPorts on ```BQ Aquaris M10```
 

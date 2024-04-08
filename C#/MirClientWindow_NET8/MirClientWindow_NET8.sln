@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34723.18
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MirClientWindow_NET8", "MirClientWindow_NET8\MirClientWindow_NET8.csproj", "{01DF60FC-2666-418A-BB8E-4ACC4A0AA68D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{01DF60FC-2666-418A-BB8E-4ACC4A0AA68D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01DF60FC-2666-418A-BB8E-4ACC4A0AA68D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01DF60FC-2666-418A-BB8E-4ACC4A0AA68D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01DF60FC-2666-418A-BB8E-4ACC4A0AA68D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {560917E5-1377-48D8-B67F-2EEFB63B0CDE}
+	EndGlobalSection
+EndGlobal
