@@ -11,7 +11,7 @@
 * NOTE: Projects setup for MonoDevelop but can just use terminal
 
 ## To Run
-* [my-app].desktop file is required in ```usr/share/applications``` folder to run
+* [my-app].desktop file is required in ```~/.local/share/applications``` or ```usr/share/applications``` folder to run
 * Desktop file will look something like this below...
 ```
 [Desktop Entry]
