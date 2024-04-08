@@ -22,12 +22,13 @@ int BYTES_PER_PIXEL(enum MirPixelFormat format)
 		case mir_pixel_format_rgba_4444:
 			return 2;
 	}
+    return 0;
 }
 
 static MirOutput const* find_active_output(MirDisplayConfig const* conf)
 {
-    size_t num_outputs = mir_display_config_get_num_outputs(conf);
-    for (size_t i = 0; i < num_outputs; i++)
+    int num_outputs = mir_display_config_get_num_outputs(conf);
+    for (int i = 0; i < num_outputs; i++)
     {
         MirOutput const* output = mir_display_config_get_output(conf, i);
         MirOutputConnectionState state = mir_output_get_connection_state(output);
@@ -87,8 +88,6 @@ int main (int argc, char *argv[])
         MirPixelFormat f = mir_output_get_pixel_format(output, i);
         if (BYTES_PER_PIXEL(f) == 4)
         {
-            //pixel_format = f;
-            //break;
             switch (f)
             {
             	case mir_pixel_format_abgr_8888: hasFormat_abgr = 1; break;
@@ -99,10 +98,27 @@ int main (int argc, char *argv[])
         }
     }
 
-    if (hasFormat_abgr) pixel_format = mir_pixel_format_abgr_8888;
-    else if (hasFormat_xbgr) pixel_format = mir_pixel_format_xbgr_8888;
-    else if (hasFormat_argb) pixel_format = mir_pixel_format_argb_8888;
-    else if (hasFormat_xrgb) pixel_format = mir_pixel_format_xrgb_8888;
+    int isABGR = 1;
+    if (hasFormat_abgr)
+    {
+        pixel_format = mir_pixel_format_abgr_8888;
+        isABGR = 1;
+    }
+    else if (hasFormat_xbgr)
+    {
+        pixel_format = mir_pixel_format_xbgr_8888;
+        isABGR = 1;
+    }
+    else if (hasFormat_argb)
+    {
+        pixel_format = mir_pixel_format_argb_8888;
+        isABGR = 0;
+    }
+    else if (hasFormat_xrgb)
+    {
+        pixel_format = mir_pixel_format_xrgb_8888;
+        isABGR = 0;
+    }
 
     if (pixel_format == mir_pixel_format_invalid)
     {
@@ -120,11 +136,10 @@ int main (int argc, char *argv[])
     // create window
 	MirWindowSpec *spec = mir_create_normal_window_spec(conn, width, height);
     mir_window_spec_set_pixel_format(spec, pixel_format);
-    mir_window_spec_set_name(spec, "Basic Window");
+    mir_window_spec_set_name(spec, "Mir C#");
     mir_window_spec_set_buffer_usage(spec, mir_buffer_usage_software);
 
-    MirWindow* window;
-    window = mir_create_window_sync(spec);
+    MirWindow* window = mir_create_window_sync(spec);
     mir_window_spec_release(spec);
     if (window == NULL)
     {
@@ -145,11 +160,13 @@ int main (int argc, char *argv[])
         // clear buffer
         char* data = backbuffer.vaddr;
         int size = backbuffer.width * backbuffer.height * 4;
+        char channel0 = isABGR ? 255 : 0;
+        char channel2 = isABGR ? 0 : 255;
         for (int i = 0; i < size; i += 4)
         {
-        	data[i + 0] = 0;
+        	data[i + 0] = channel0;
         	data[i + 1] = 0;
-        	data[i + 2] = 255;// R or B
+        	data[i + 2] = channel2;// R or B
         	data[i + 3] = 255;// alpha
         }
 
