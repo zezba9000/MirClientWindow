@@ -357,6 +357,7 @@ namespace TestMirCSharp
 				// swap buffer
 				//Console.WriteLine ("Calling: mir_buffer_stream_swap_buffers_sync");
 				mir_buffer_stream_swap_buffers_sync(bs);
+				//System.Threading.Thread.Sleep (1000 / 60);
 			}
 
 			// shutdown
