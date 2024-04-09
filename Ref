@@ -2,6 +2,15 @@
 sudo apt install libmirclient-dev
 sudo apt install libgles2-mesa-dev
 
+<< SDK for cross-compile >>
+sudo apt install crossbuild-essential-armhf
+sudo apt install libmirclient-dev:armhf
+sudo apt install libgles2-mesa-dev:armhf
+
+sudo apt install crossbuild-essential-arm64
+sudo apt install libmirclient-dev:arm64
+sudo apt install libgles2-mesa-dev:arm64
+
 << Mir Simulation enviroment for X11 >>
 sudo apt install miral-examples
 miral-app
