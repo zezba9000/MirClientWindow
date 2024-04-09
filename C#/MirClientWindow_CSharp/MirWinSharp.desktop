@@ -1,10 +1,8 @@
 [Desktop Entry]
 Version=1.0
 Name=MirWinSharp
-Exec=mono /home/awitte/Dev/MirClientWindow/C#/MirClientWindow_CSharp/bin/Debug/MirWinSharp.exe
+Exec=sh -c "mono /home/awitte/Dev/MirClientWindow/C#/MirClientWindow_CSharp/bin/Debug/MirWinSharp.exe > /home/awitte/Dev/log.txt"
 Type=Application
 Icon=firefox
 Categories=WebBrowser;
 StartupNotify=true
-Path=/home/awitte/Dev/MirClientWindow/C#/MirClientWindow_CSharp/bin/Debug
-Name[en_US]=MirWinSharp

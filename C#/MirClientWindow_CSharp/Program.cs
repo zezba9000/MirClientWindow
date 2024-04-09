@@ -84,7 +84,7 @@ namespace TestMirCSharp
 
 	static unsafe class MainClass
 	{
-		const string clientLib = "libmirclient.so";
+		const string clientLib = "libmirclient.so.9";
 
 		[DllImport(clientLib, EntryPoint = "mir_connect_sync", ExactSpelling = true)]
 		public static extern MirConnection mir_connect_sync(byte* server, byte* app_name);
@@ -221,8 +221,8 @@ namespace TestMirCSharp
 		public static int Main(string[] args)
 		{
 			// get connection
-			Console.WriteLine ("Calling: mir_connect_sync");
-			byte[] appName = Encoding.UTF8.GetBytes("MirWinSharp");
+			Console.WriteLine ("Calling: mir_connect_sync: " + args.Length);
+			byte[] appName = Encoding.UTF8.GetBytes("MirWinSharp\0");
 			MirConnection conn;
 			fixed (byte* appNamePtr = appName) conn = mir_connect_sync(null, appNamePtr);
 			if (mir_connection_is_valid(conn) == 0)
@@ -312,7 +312,7 @@ namespace TestMirCSharp
 			Console.WriteLine ("Calling: mir_create_normal_window_spec");
 			MirWindowSpec spec = mir_create_normal_window_spec(conn, width, height);
 			mir_window_spec_set_pixel_format(spec, pixel_format);
-			byte[] windowName = Encoding.UTF8.GetBytes("Mir C#");
+			byte[] windowName = Encoding.UTF8.GetBytes("Mir C#\0");
 			fixed (byte* windowNamePtr = windowName) mir_window_spec_set_name(spec, windowNamePtr);
 			mir_window_spec_set_buffer_usage(spec, MirBufferUsage.mir_buffer_usage_software);
 

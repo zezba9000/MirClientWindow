@@ -1,9 +1,8 @@
 [Desktop Entry]
 Version=1.0
 Name=MirWinNET8
-Exec=sh -c "dotnet /home/awitte/Dev/MirClientWindow/C#/MirClientWindow_NET8/MirClientWindow_NET8/bin/Debug/net8.0/MirClientWindow_NET8.dll > /home/awitte/Dev/MirClientWindow/C#/MirClientWindow_NET8/MirClientWindow_NET8/bin/Debug/net8.0/log.txt"
+Exec=sh -c "dotnet /home/awitte/Dev/MirClientWindow/C#/MirClientWindow_NET8/MirClientWindow_NET8/bin/Debug/net8.0/MirClientWindow_NET8.dll > /home/awitte/Dev/log.txt"
 Type=Application
 Icon=firefox
 Categories=WebBrowser;
 StartupNotify=true
-Path=/home/awitte/Dev/MirClientWindow/C#/MirClientWindow_NET8/MirClientWindow_NET8/bin/Debug/net8.0
