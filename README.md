@@ -25,8 +25,8 @@ StartupNotify=true
 Path=<path-to-app-folder>
 ```
 
-## .NET8 notes
-* NOTE: For .NET8 you need to make sure all users can access
+## .NET 8 notes
+* NOTE: For ```.NET 8``` you need to make sure all users can access ```dotnet```
 * Add a file called ```dotnet.sh``` to ```/etc/profile.d/```
 ```
 export PATH=$PATH:/home/<user>/.dotnet
