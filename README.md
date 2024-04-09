@@ -25,6 +25,13 @@ StartupNotify=true
 Path=<path-to-app-folder>
 ```
 
+## .NET8 notes
+* NOTE: For .NET8 you need to make sure all users can access
+* Add a file called ```dotnet.sh``` to ```/etc/profile.d/```
+```
+export PATH=$PATH:/home/<user>/.dotnet
+```
+
 ## Ubuntu Touch (UBPorts)
 * Allow "sudo apt" commands etc: ```sudo mount -o remount,rw /```
 * NOTE: after this you can install build tools on ARM64 devices directly
