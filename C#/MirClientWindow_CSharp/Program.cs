@@ -79,7 +79,6 @@ namespace TestMirCSharp
 		public int stride;
 		public MirPixelFormat pixel_format;
 		public byte* vaddr;
-
 	}
 
 	static unsafe class MainClass
