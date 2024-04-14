@@ -170,7 +170,6 @@ namespace TestMirCSharp
 		public static extern MirEventType mir_event_get_type(MirEvent e);
 
 		static bool running = true;
-		static int swap_interval;
 
 		static int BYTES_PER_PIXEL(MirPixelFormat format)
 		{
@@ -327,7 +326,7 @@ namespace TestMirCSharp
 			// run
 			Console.WriteLine ("Calling: mir_window_get_buffer_stream");
 			MirBufferStream bs = mir_window_get_buffer_stream(window);
-			mir_buffer_stream_set_swapinterval(bs, swap_interval);
+			mir_buffer_stream_set_swapinterval(bs, 1);// vsync
 			var on_event_callback = new MirWindowEventCallbackMethod(on_event);// we keep this in memory verbose like this so GC doesn't delete it
 			var on_event_callback_ptr = Marshal.GetFunctionPointerForDelegate(on_event_callback);
 			Console.WriteLine ("Calling: mir_window_set_event_handler");
