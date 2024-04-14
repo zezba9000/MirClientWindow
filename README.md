@@ -27,11 +27,11 @@ Path=<path-to-app-folder>
 
 ## .NET 8 notes
 * NOTE: For ```.NET 8``` you need to make sure all users can access ```dotnet```
-* Add a file called ```dotnet.sh``` to ```/etc/profile.d/```
+* Add a file called ```dotnet.sh``` to ```/etc/profile.d/``` with the content below
 ```
 export PATH=$PATH:/home/<user>/.dotnet
 ```
 
 ## Ubuntu Touch (UBPorts)
 * Allow "sudo apt" commands etc: ```sudo mount -o remount,rw /```
-* NOTE: after this you can install build tools on ARM64 devices directly
+* NOTE: after this you can install build tools on ARM devices directly
