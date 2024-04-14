@@ -52,7 +52,6 @@ int main (int argc, char *argv[])
 	printf ("Hello Mir!\n");
 
 	char *mir_socket = NULL;
-	int swap_interval = 0;
 
 	// get connection
 	MirConnection *conn;
@@ -149,7 +148,7 @@ int main (int argc, char *argv[])
 
     // run
     MirBufferStream* bs = mir_window_get_buffer_stream(window);
-    mir_buffer_stream_set_swapinterval(bs, swap_interval);
+    mir_buffer_stream_set_swapinterval(bs, 1);
     mir_window_set_event_handler(window, &on_event, NULL);
     while (running)
     {
